@@ -220,9 +220,9 @@ export default function App() {
               </span>
               <div>
                 <p className="text-xs uppercase tracking-[3px] text-[color:var(--color-secondary)]">
-                  BEC 2026
+                  RKIM UB
                 </p>
-                <p className="text-lg font-semibold">Brawijaya Essay</p>
+                <p className="text-lg font-semibold">BEC 2026</p>
               </div>
             </a>
 
@@ -292,9 +292,8 @@ export default function App() {
 
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <FadeIn className="space-y-8">
-            <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-primary)]">
-              <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent)]"></span>
-              Lomba Karya Tulis Ilmiah Nasional
+            <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-bold tracking-[3px] text-[color:var(--color-primary)] rounded-3xl">    
+                Riset dan Karya Ilmiah Mahasiswa Presents
             </div>
 
             <div className="space-y-4">
@@ -303,7 +302,7 @@ export default function App() {
                 <span className="block text-gradient">Competition 2026</span>
               </h1>
               <p className="max-w-xl text-lg text-[color:var(--color-muted)] md:text-xl text-balance">
-Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045
+                Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045
               </p>
             </div>
 

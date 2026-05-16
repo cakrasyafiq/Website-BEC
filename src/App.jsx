@@ -1,688 +1,727 @@
-export default function BEC2026Website() {
-  const scienceThemes = [
-    {
-      title: 'Kesehatan',
-      desc: 'Inovasi kesehatan digital, preventif, nutrisi, AI kesehatan, telemedicine, dan solusi kesehatan masyarakat.',
-    },
-    {
-      title: 'Lingkungan',
-      desc: 'Solusi perubahan iklim, pengolahan sampah, smart city hijau, ekonomi sirkular, dan konservasi lingkungan.',
-    },
-    {
-      title: 'Energi Terbarukan',
-      desc: 'Energi surya, biomassa, piezoelectric, hydrogen energy, dan teknologi energi masa depan.',
-    },
-    {
-      title: 'Teknologi',
-      desc: 'AI, IoT, smart system, blockchain, cybersecurity, dan teknologi transformasi digital.',
-    },
-    {
-      title: 'Pangan',
-      desc: 'Ketahanan pangan, pangan alternatif, urban farming, precision agriculture, dan food technology.',
-    },
-  ];
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import {
+  BadgeCheck,
+  BookOpen,
+  CalendarClock,
+  FileText,
+  FileCheck,
+  Globe,
+  GraduationCap,
+  Handshake,
+  Menu,
+  ShieldCheck,
+  Sparkles,
+  Trophy,
+  Users,
+  X,
+} from 'lucide-react';
+import docOne from '../images/documentation/IMG_5373.JPG';
+import docTwo from '../images/documentation/IMG_5408.JPG';
+import docThree from '../images/documentation/_MG_5484.JPG';
+import docFour from '../images/documentation/_MG_5498.JPG';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-  const socialThemes = [
-    {
-      title: 'Psikologi',
-      desc: 'Mental health, kesejahteraan generasi muda, kesehatan psikologis digital society.',
-    },
-    {
-      title: 'Pendidikan',
-      desc: 'Pendidikan adaptif, AI learning, pendidikan inklusif, transformasi pembelajaran.',
-    },
-    {
-      title: 'Pariwisata',
-      desc: 'Smart tourism, sustainable tourism, digital tourism, dan revitalisasi budaya lokal.',
-    },
-    {
-      title: 'Ekonomi',
-      desc: 'Ekonomi digital, UMKM, green economy, startup innovation, dan ekonomi berkelanjutan.',
-    },
-    {
-      title: 'Politik',
-      desc: 'Good governance, civic technology, transparansi digital, dan partisipasi generasi muda.',
-    },
-  ];
+const navItems = [
+  { label: 'Tentang', href: '#tentang' },
+  { label: 'Ketentuan', href: '#ketentuan' },
+  { label: 'Timeline', href: '#timeline' },
+  { label: 'Berkas', href: '#berkas' },
+  { label: 'Dokumentasi', href: '#dokumentasi' },
+  { label: 'Sponsorship', href: '#sponsorship' },
+  { label: 'Kontak', href: '#kontak' },
+];
 
-  const timeline = [
-    {
-      date: '25 Mei – 15 Juni 2026',
-      title: 'Pendaftaran & Pengumpulan Abstrak',
-    },
-    {
-      date: '19 Juni 2026',
-      title: 'Pengumuman Lolos Abstrak',
-    },
-    {
-      date: 'Juni – Juli 2026',
-      title: 'Pengumpulan Full Paper',
-    },
-    {
-      date: '18 Agustus 2026',
-      title: 'Pengumuman Finalis',
-    },
-    {
-      date: '5 September 2026',
-      title: 'Grand Final',
-    },
-    {
-      date: '6 September 2026',
-      title: 'Expo, Seminar & Awarding',
-    },
-  ];
+const heroStats = [
+  { value: '10+', label: 'Subtema Esai' },
+  { value: '100+', label: 'Peserta Nasional' },
+  { value: '6', label: 'Tahapan Utama' },
+];
 
-  const faq = [
-    {
-      q: 'Apakah lomba berbayar?',
-      a: 'Abstrak gratis, full paper berbayar.',
-    },
-    {
-      q: 'Apakah boleh beda jurusan?',
-      a: 'Boleh, selama satu universitas.',
-    },
-    {
-      q: 'Apakah final dilakukan online?',
-      a: 'Tidak. Final dilakukan secara offline.',
-    },
-    {
-      q: 'Berapa jumlah anggota?',
-      a: '2–3 orang per tim.',
-    },
-    {
-      q: 'Apakah karya harus orisinal?',
-      a: 'Ya, wajib orisinal dan bebas plagiarisme.',
-    },
-  ];
+const requirementCards = [
+  {
+    icon: GraduationCap,
+    title: 'Mahasiswa aktif',
+    desc: 'D3, D4, atau S1 dari seluruh universitas di Indonesia.',
+  },
+  {
+    icon: Users,
+    title: 'Tim 2-3 orang',
+    desc: 'Satu universitas, lintas jurusan diperbolehkan.',
+  },
+  {
+    icon: BadgeCheck,
+    title: 'Karya orisinal',
+    desc: 'Belum pernah dilombakan, bebas plagiarisme, dan etis.',
+  },
+  {
+    icon: FileText,
+    title: 'Format resmi',
+    desc: 'Mengikuti template, gaya sitasi, dan format penulisan.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Etika akademik',
+    desc: 'Tidak mengandung SARA, hoaks, atau unsur merugikan.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Berbasis riset',
+    desc: 'Solusi didukung data, referensi kredibel, dan analisis.',
+  },
+];
 
-  const registrationSteps = [
-    'Follow Instagram & TikTok BEC',
-    'Sebarkan poster ke minimal 3 grup',
-    'Upload twibbon di Instagram',
-    'Isi formulir pendaftaran',
-    'Upload abstrak dan berkas',
-    'Konfirmasi ke narahubung',
-  ];
+const timeline = [
+  {
+    date: '25 Mei - 15 Juni 2026',
+    title: 'Pendaftaran & Pengumpulan Abstrak',
+    desc: 'Daftar online dan unggah abstrak pertama.',
+  },
+  {
+    date: '19 Juni 2026',
+    title: 'Pengumuman Lolos Abstrak',
+    desc: 'Seleksi abstrak dan pengumuman tahap lanjut.',
+  },
+  {
+    date: 'Juni - Juli 2026',
+    title: 'Pengumpulan Full Paper',
+    desc: 'Submit full paper sesuai buku panduan.',
+  },
+  {
+    date: '18 Agustus 2026',
+    title: 'Pengumuman Finalis',
+    desc: 'Tim finalis diumumkan secara resmi.',
+  },
+  {
+    date: '5 September 2026',
+    title: 'Grand Final',
+    desc: 'Presentasi offline dan sesi tanya jawab.',
+  },
+  {
+    date: '6 September 2026',
+    title: 'Expo, Seminar & Awarding',
+    desc: 'Pameran karya, seminar, dan awarding.',
+  },
+];
+
+const resources = [
+  {
+    icon: CalendarClock,
+    title: 'Pendaftaran Abstrak',
+    desc: 'Formulir pendaftaran untuk tim baru dan unggah abstrak.',
+    cta: 'Daftar Sekarang',
+    status: 'active',
+    href: '#kontak',
+  },
+  {
+    icon: FileText,
+    title: 'Buku Panduan',
+    desc: 'Panduan resmi, format penulisan, dan rubric penilaian.',
+    cta: 'Unduh Panduan',
+    status: 'active',
+    href: '#kontak',
+  },
+  {
+    icon: BookOpen,
+    title: 'Pengumpulan Full Paper',
+    desc: 'Unggah full paper setelah pengumuman lolos abstrak.',
+    cta: 'Kirim Full Paper',
+    status: 'active',
+    href: '#kontak',
+  },
+  {
+    icon: Sparkles,
+    title: 'Poster & PPT',
+    desc: 'Template poster dan presentasi akan menyusul.',
+    cta: 'Segera Hadir',
+    status: 'disabled',
+  },
+];
+
+const gallery = [
+  {
+    src: docOne,
+    title: 'Presentasi Finalis',
+  },
+  {
+    src: docTwo,
+    title: 'Sesi Tanya Jawab',
+  },
+  {
+    src: docThree,
+    title: 'Booth Expo Karya',
+  },
+  {
+    src: docFour,
+    title: 'Awarding Night',
+  },
+];
+
+const sponsors = [
+  'Bank Partner',
+  'Tech Partner',
+  'Media Partner',
+  'Education Partner',
+  'Community Partner',
+  'Startup Partner',
+  'Research Partner',
+  'Innovation Partner',
+];
+
+const socials = [
+  { label: 'Instagram', value: '@bec2026' },
+  { label: 'TikTok', value: '@bec2026' },
+  { label: 'LinkedIn', value: 'BEC 2026' },
+  { label: 'Email', value: 'bec2026@example.com' },
+];
+
+function FadeIn({ children, delay = 0, className = '' }) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export default function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
   return (
-    <div className="bg-gradient-to-b from-[#DFF2EA] to-[#F1F6ED] text-[#374151] min-h-screen overflow-x-hidden scroll-smooth">
-      <style>{`
-        html {
-          scroll-behavior: smooth;
-        }
+    <div className="relative text-[color:var(--color-ink)]">
+      <header className="sticky top-0 z-50">
+        <div className="mx-auto max-w-7xl px-6 pt-5">
+          <nav
+            className={`flex items-center justify-between rounded-full px-5 py-3 transition-all duration-300 ${
+              isScrolled
+                ? 'bg-white/85 shadow-[var(--shadow-soft)] backdrop-blur-xl'
+                : 'bg-white/50 backdrop-blur-md'
+            }`}
+          >
+            <a href="#hero" className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--color-primary)] text-white">
+                <Sparkles size={22} />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                  BEC 2026
+                </p>
+                <p className="text-lg font-semibold">Brawijaya Essay</p>
+              </div>
+            </a>
 
-        .glass {
-          background: rgba(255,255,255,0.5);
-          backdrop-filter: blur(14px);
-          border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .glow {
-          box-shadow: 0 0 40px rgba(82,198,164,0.35);
-        }
-
-        .grid-bg {
-          background-image:
-            linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}</style>
-
-      <div className="fixed inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#52C6A4] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-[#2A7ABF] rounded-full blur-3xl"></div>
-      </div>
-
-      <nav className="sticky top-0 z-50 px-6 py-5">
-        <div className="max-w-7xl mx-auto glass rounded-full px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-[#52C6A4] flex items-center justify-center text-white font-bold text-xl glow">
-              ✦
+            <div className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[2px] lg:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="transition hover:text-[color:var(--color-primary)]"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-            <h1 className="font-black text-2xl text-[#00635D]">BEC 2026</h1>
+
+            <div className="hidden items-center gap-3 lg:flex">
+              <a
+                href="#berkas"
+                className="rounded-full border border-white/70 bg-white/70 px-5 py-2 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5"
+              >
+                Buku Panduan
+              </a>
+              <a
+                href="#berkas"
+                className="rounded-full bg-[color:var(--color-primary)] px-5 py-2 text-sm font-semibold text-white shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
+              >
+                Daftar Abstrak
+              </a>
+            </div>
+
+            <button
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/80 text-[color:var(--color-primary)] lg:hidden"
+              aria-label="Buka menu"
+              onClick={() => setMenuOpen(true)}
+            >
+              <Menu size={22} />
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <div
+        className={`fixed inset-0 z-50 bg-[rgba(15,118,110,0.95)] backdrop-blur-xl transition duration-300 lg:hidden ${
+          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      >
+        <div className="flex h-full flex-col px-6 pb-10 pt-8 text-white">
+          <div className="flex items-center justify-between">
+            <p className="text-lg font-semibold">Menu</p>
+            <button
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30"
+              aria-label="Tutup menu"
+              onClick={() => setMenuOpen(false)}
+            >
+              <X size={22} />
+            </button>
           </div>
 
-          <div className="hidden md:flex gap-8 text-lg">
-            {['Home', 'About', 'Theme', 'Timeline', 'Guidelines', 'FAQ', 'Contact'].map((item) => (
+          <div className="mt-10 flex flex-col gap-6 text-2xl font-semibold">
+            {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-[#00635D] transition-all duration-300 hover:scale-105"
+                key={item.label}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="transition hover:text-[color:var(--color-accent)]"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
 
-          <button className="bg-[#00635D] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all glow">
-            Register
-          </button>
-        </div>
-      </nav>
-
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center px-6"
-      >
-        <div className="absolute inset-0 grid-bg"></div>
-
-        <div className="relative z-10 max-w-6xl text-center">
-          <div className="inline-block bg-[#CAE7DC] px-6 py-3 rounded-full text-[#52C6A4] font-bold tracking-[4px] uppercase mb-8">
-            Lomba Karya Tulis Ilmiah Nasional
-          </div>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-none mb-8 text-[#00635D]">
-            Brawijaya Essay
-            <br />
-            <span className="bg-gradient-to-r from-[#2A7ABF] to-[#52C6A4] bg-clip-text text-transparent">
-              Competition
-            </span>
-          </h1>
-
-          <p className="max-w-4xl mx-auto text-xl md:text-3xl leading-relaxed mb-12 text-[#374151]">
-            “Empowering Young Changemakers to Break Boundaries and Create
-            Impact through Innovation, Collaboration, and Visionary Thinking
-            Towards Indonesia Emas 2045”
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-5">
-            <button className="bg-[#52C6A4] text-white px-10 py-5 rounded-3xl text-xl font-bold glow hover:scale-105 transition-all">
-              Register Now
-            </button>
-
-            <button className="glass px-10 py-5 rounded-3xl text-xl font-bold hover:scale-105 transition-all">
-              Download Guidebook
-            </button>
-
-            <button className="border-2 border-[#00635D] text-[#00635D] px-10 py-5 rounded-3xl text-xl font-bold hover:bg-[#00635D] hover:text-white transition-all">
-              Explore Themes
-            </button>
-          </div>
-
-          <div className="mt-20 flex flex-wrap justify-center gap-8">
-            {[
-              'Innovation.',
-              'Collaboration.',
-              'Visionary Thinking.',
-            ].map((item) => (
-              <div
-                key={item}
-                className="glass px-8 py-5 rounded-2xl text-2xl font-bold text-[#00635D]"
-              >
-                {item}
-              </div>
-            ))}
+          <div className="mt-auto space-y-3">
+            <a
+              href="#berkas"
+              onClick={() => setMenuOpen(false)}
+              className="flex w-full items-center justify-center rounded-full border border-white/40 px-5 py-3 text-sm font-semibold"
+            >
+              Buku Panduan
+            </a>
+            <a
+              href="#berkas"
+              onClick={() => setMenuOpen(false)}
+              className="flex w-full items-center justify-center rounded-full bg-white text-sm font-semibold text-[color:var(--color-primary)]"
+            >
+              Daftar Abstrak
+            </a>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="about" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="text-[#52C6A4] font-bold uppercase tracking-[4px] mb-4">
-              About BEC
-            </p>
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              About Competition
-            </h2>
-            <p className="max-w-5xl mx-auto text-xl leading-relaxed">
-              Brawijaya Essay Competition (BEC) 2026 merupakan lomba dalam
-              bentuk kompetisi esai berskala nasional yang diselenggarakan oleh
-              Riset dan Karya Ilmiah Universitas Brawijaya (RKIM UB).
-              Kompetisi ini menjadi wadah bagi mahasiswa untuk menciptakan
-              inovasi dan solusi nyata menuju Indonesia Emas 2045.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-6 mb-20">
-            {[
-              'Mengembangkan pola pikir kritis',
-              'Mendorong inovasi mahasiswa',
-              'Menyelesaikan masalah nasional',
-              'Ruang kontribusi generasi muda',
-              'Indonesia Emas 2045',
-            ].map((item) => (
-              <div
-                key={item}
-                className="glass rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-[#52C6A4] mb-6"></div>
-                <h3 className="font-bold text-xl text-[#00635D]">{item}</h3>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              ['National Scale', 'Indonesia'],
-              ['10 Finalists', 'Best Teams'],
-              ['10 Subthemes', 'Innovative Ideas'],
-              ['100+', 'Participants'],
-            ].map(([title, sub]) => (
-              <div key={title} className="glass rounded-3xl p-10 text-center glow">
-                <h3 className="text-4xl font-black text-[#00635D] mb-3">
-                  {title}
-                </h3>
-                <p className="text-lg text-[#374151]">{sub}</p>
-              </div>
-            ))}
-          </div>
+      <section id="hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-40 right-0 h-[420px] w-[420px] rounded-full bg-[#2dd4bf]/35 blur-[120px] animate-[float_14s_ease-in-out_infinite]"></div>
+          <div className="absolute left-0 top-16 h-[320px] w-[320px] rounded-full bg-[#fbbf24]/25 blur-[110px] animate-[float_12s_ease-in-out_infinite]"></div>
+          <div className="absolute bottom-0 right-16 h-[280px] w-[280px] rounded-full bg-[#0f766e]/25 blur-[110px] animate-[float_16s_ease-in-out_infinite]"></div>
         </div>
-      </section>
 
-      <section id="theme" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-8">
-              Theme & Subtheme
-            </h2>
+        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <FadeIn className="space-y-8">
+            <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-primary)]">
+              <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent)]"></span>
+              Lomba Karya Tulis Ilmiah Nasional
+            </div>
 
-            <div className="glass rounded-[40px] p-10 max-w-5xl mx-auto">
-              <p className="text-2xl leading-relaxed font-semibold bg-gradient-to-r from-[#2A7ABF] to-[#52C6A4] bg-clip-text text-transparent">
-                “Empowering Young Changemakers to Break Boundaries and Create
-                Impact through Innovation, Collaboration, and Visionary Thinking
-                Towards Indonesia Emas 2045”
+            <div className="space-y-4">
+              <h1 className="text-4xl font-semibold leading-tight md:text-6xl lg:text-7xl">
+                Brawijaya Essay
+                <span className="block text-gradient">Competition 2026</span>
+              </h1>
+              <p className="max-w-xl text-lg text-[color:var(--color-muted)] md:text-xl text-balance">
+                Empowering young changemakers to break boundaries and create
+                impact through innovation, collaboration, and visionary thinking
+                towards Indonesia Emas 2045.
               </p>
             </div>
-          </div>
 
-          <div className="mb-20">
-            <h3 className="text-4xl font-black text-[#00635D] mb-10">
-              Sains & Teknologi
-            </h3>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {scienceThemes.map((item) => (
-                <div
-                  key={item.title}
-                  className="glass rounded-[32px] p-8 hover:-translate-y-3 transition-all duration-300"
+            <div className="glass-card flex flex-col gap-4 rounded-3xl p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                  Call for Papers
+                </p>
+                <p className="text-lg font-semibold">
+                  Buka pendaftaran abstrak dan full paper
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#berkas"
+                  className="rounded-full bg-[color:var(--color-accent)] px-5 py-2 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-[#2A7ABF] to-[#52C6A4] mb-6"></div>
-                  <h4 className="text-3xl font-black text-[#00635D] mb-4">
-                    {item.title}
-                  </h4>
-                  <p className="leading-relaxed text-lg">{item.desc}</p>
+                  Daftar Sekarang
+                </a>
+                <a
+                  href="#berkas"
+                  className="rounded-full border border-white/70 bg-white/60 px-5 py-2 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5"
+                >
+                  Lihat Panduan
+                </a>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {heroStats.map((item) => (
+                <div key={item.label} className="glass-card rounded-2xl p-4">
+                  <p className="text-2xl font-semibold text-[color:var(--color-primary)]">
+                    {item.value}
+                  </p>
+                  <p className="text-sm text-[color:var(--color-muted)]">
+                    {item.label}
+                  </p>
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
 
-          <div>
-            <h3 className="text-4xl font-black text-[#00635D] mb-10">
-              Sosial & Humaniora
-            </h3>
+        </div>
+      </section>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {socialThemes.map((item) => (
-                <div
-                  key={item.title}
-                  className="glass rounded-[32px] p-8 hover:-translate-y-3 transition-all duration-300"
-                >
-                  <div className="w-16 h-16 rounded-2xl bg-[#52C6A4] mb-6"></div>
-                  <h4 className="text-3xl font-black text-[#00635D] mb-4">
-                    {item.title}
-                  </h4>
-                  <p className="leading-relaxed text-lg">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+      <section id="tentang" className="py-24 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+              Tentang BEC
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+              Kompetisi Esai Nasional yang Menggerakkan Inovasi
+            </h2>
+            <p className="mt-4 text-lg text-[color:var(--color-muted)] text-balance">
+              Brawijaya Essay Competition 2026 menghadirkan ruang bagi mahasiswa
+              untuk menyuarakan ide, merancang solusi, dan menunjukkan dampak
+              nyata menuju Indonesia Emas 2045.
+            </p>
+          </FadeIn>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Globe,
+                title: 'Tema Besar',
+                subtitle: 'Indonesia Emas 2045',
+                color: 'from-[#0f766e] to-[#2dd4bf]',
+              },
+              {
+                icon: FileCheck,
+                title: 'Tahapan',
+                subtitle: 'Seleksi abstrak, full paper, dan presentasi',
+                color: 'from-[#2dd4bf] to-[#fbbf24]',
+              },
+              {
+                icon: Trophy,
+                title: 'Puncak Acara',
+                subtitle: 'Expo karya dan awarding nasional',
+                color: 'from-[#fbbf24] to-[#0f766e]',
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <FadeIn key={item.title} delay={index * 0.1}>
+                  <div className="glass-card group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div className="absolute top-0 right-0 -mr-16 -mt-16 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-20" style={{backgroundImage: `linear-gradient(135deg, #2dd4bf, #fbbf24)`}}></div>
+                    
+                    <div className="relative z-10 space-y-4">
+                      <div className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transition-all duration-300 group-hover:scale-110`}>
+                        <Icon size={28} />
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[color:var(--color-secondary)]/30 text-xs font-bold text-[color:var(--color-primary)]">
+                            {index + 1}
+                          </span>
+                          <span className="h-0.5 flex-1 bg-gradient-to-r from-[color:var(--color-secondary)] to-transparent rounded-full"></span>
+                        </div>
+                        <div>
+                          <p className="text-xl font-bold text-[color:var(--color-ink)]">
+                            {item.title}
+                          </p>
+                          <p className="text-sm text-[color:var(--color-muted)] leading-relaxed">
+                            {item.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section id="timeline" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Competition Timeline
+      <section id="ketentuan" className="py-24 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                Ketentuan Peserta
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+                Siapakah yang Bisa Berpartisipasi?
+              </h2>
+            </div>
+          </FadeIn>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {requirementCards.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.title}
+                  className="glass-card group rounded-3xl p-6 transition hover:-translate-y-1"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2dd4bf]/20 text-[color:var(--color-primary)]">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline" className="py-24 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+              Timeline
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+              Tahapan BEC 2026
             </h2>
-            <p className="text-xl max-w-3xl mx-auto">
-              Jangan sampai terlewat deadline penting BEC 2026.
+            <p className="mt-4 text-[color:var(--color-muted)]">
+              Catat tanggal penting agar tidak terlewat setiap fase kompetisi.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="glass rounded-[40px] p-10 mb-16 text-center glow">
-            <p className="uppercase tracking-[4px] text-[#52C6A4] font-bold mb-4">
-              Countdown To Deadline
-            </p>
-            <h3 className="text-6xl font-black text-[#00635D]">24 Days</h3>
-          </div>
-
-          <div className="overflow-x-auto">
-            <div className="flex gap-8 min-w-max pb-4">
+          <div className="relative mt-12">
+            <div className="absolute left-0 right-0 top-8 hidden h-px bg-white/70 lg:block"></div>
+            <div className="grid gap-6 lg:grid-cols-6">
               {timeline.map((item, index) => (
-                <div
-                  key={index}
-                  className="glass rounded-[32px] p-8 w-[320px] flex-shrink-0 hover:-translate-y-2 transition-all"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#52C6A4] text-white flex items-center justify-center text-2xl font-black mb-6">
-                    {index + 1}
+                <FadeIn key={item.title} delay={index * 0.05}>
+                  <div className="glass-card relative rounded-3xl p-5 pt-8">
+                    <div className="absolute -top-4 left-5 flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-primary)] text-sm font-semibold text-white">
+                      {index + 1}
+                    </div>
+                    <p className="text-xs font-semibold uppercase tracking-[2px] text-[color:var(--color-secondary)]">
+                      {item.date}
+                    </p>
+                    <h3 className="mt-3 text-lg font-semibold">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+                      {item.desc}
+                    </p>
                   </div>
-
-                  <p className="text-[#2A7ABF] font-bold mb-3">{item.date}</p>
-                  <h4 className="text-2xl font-black text-[#00635D] leading-snug">
-                    {item.title}
-                  </h4>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="guidelines" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Registration Flow
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            {registrationSteps.map((item, index) => (
-              <div
-                key={item}
-                className="glass rounded-[32px] p-8 relative overflow-hidden"
-              >
-                <div className="absolute -top-5 -right-5 text-[120px] font-black text-[#CAE7DC]">
-                  {index + 1}
-                </div>
-
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-[#00635D] mb-6"></div>
-                  <h3 className="text-2xl font-black text-[#00635D]">
-                    {item}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="glass rounded-[40px] p-10">
-              <h3 className="text-4xl font-black text-[#00635D] mb-8">
-                Ketentuan Umum
-              </h3>
-
-              <ul className="space-y-5 text-xl">
-                {[
-                  'Orisinal',
-                  'Tidak plagiarisme',
-                  'Tidak mengandung SARA',
-                  'Belum pernah dilombakan',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-4">
-                    <div className="w-4 h-4 rounded-full bg-[#52C6A4]"></div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      <section id="berkas" className="py-24 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                Berkas
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+                Akses Berkas & Pengumpulan
+              </h2>
             </div>
-
-            <div className="glass rounded-[40px] p-10 overflow-x-auto">
-              <h3 className="text-4xl font-black text-[#00635D] mb-8">
-                Penilaian
-              </h3>
-
-              <table className="w-full text-left">
-                <thead>
-                  <tr className="border-b border-[#CAE7DC]">
-                    <th className="py-4 text-xl">Aspek</th>
-                    <th className="py-4 text-xl">Bobot</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ['Gagasan', '40%'],
-                    ['Format Penulisan', '20%'],
-                    ['Data & Sumber', '20%'],
-                    ['Orisinalitas', '20%'],
-                  ].map(([a, b]) => (
-                    <tr key={a} className="border-b border-[#CAE7DC]">
-                      <td className="py-5 text-lg">{a}</td>
-                      <td className="py-5 text-lg font-bold text-[#00635D]">
-                        {b}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Final Stage
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Grand Final',
-                desc: 'Presentasi offline, 8 menit presentasi, 10 menit tanya jawab.',
-              },
-              {
-                title: 'Poster Competition',
-                desc: 'Poster ukuran A3, format PNG & PDF, upload poster dan PPT.',
-              },
-              {
-                title: 'Expo',
-                desc: 'Booth exhibition, presentasi karya, prototipe dan media digital.',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="glass rounded-[40px] p-10 glow hover:-translate-y-2 transition-all"
-              >
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-r from-[#2A7ABF] to-[#52C6A4] mb-8"></div>
-                <h3 className="text-4xl font-black text-[#00635D] mb-5">
-                  {item.title}
-                </h3>
-                <p className="text-lg leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Prize & Benefits
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="glass rounded-[40px] p-10">
-              <h3 className="text-4xl font-black text-[#00635D] mb-8">
-                Awards
-              </h3>
-
-              <div className="space-y-4">
-                {[
-                  'Juara 1',
-                  'Juara 2',
-                  'Juara 3',
-                  'Harapan 1 & 2',
-                  'Best Presentation',
-                  'Best Essay',
-                  'Favorite Poster',
-                  'Favorite Booth',
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="bg-white/50 rounded-2xl px-6 py-5 font-semibold text-lg"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="glass rounded-[40px] p-10">
-              <h3 className="text-4xl font-black text-[#00635D] mb-8">
-                Benefits
-              </h3>
-
-              <div className="grid grid-cols-2 gap-5">
-                {[
-                  'Sertifikat nasional',
-                  'Relasi nasional',
-                  'Exposure karya',
-                  'Pengalaman kompetisi',
-                  'Portofolio prestisius',
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="bg-gradient-to-r from-[#2A7ABF] to-[#52C6A4] text-white rounded-3xl p-6 font-bold"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" className="py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {faq.map((item) => (
-              <div key={item.q} className="glass rounded-[32px] p-8">
-                <h3 className="text-2xl font-black text-[#00635D] mb-4">
-                  {item.q}
-                </h3>
-                <p className="text-lg">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-[#00635D] mb-6">
-              Gallery
-            </h2>
-          </div>
-
-          <div className="columns-1 md:columns-3 gap-6 space-y-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div
-                key={item}
-                className="glass rounded-[32px] p-6 break-inside-avoid"
-              >
-                <div className="h-64 rounded-3xl bg-gradient-to-br from-[#2A7ABF] to-[#52C6A4] mb-5"></div>
-                <h3 className="text-2xl font-black text-[#00635D] mb-2">
-                  BEC Documentation
-                </h3>
-                <p>Final presentation, awarding, expo booth, dan seminar.</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="glass rounded-[50px] p-14 text-center glow">
-            <h2 className="text-5xl md:text-7xl font-black text-[#00635D] mb-8">
-              Be The Next Changemaker
-            </h2>
-
-            <p className="max-w-4xl mx-auto text-2xl leading-relaxed mb-10">
-              Join Brawijaya Essay Competition 2026 dan jadilah bagian dari
-              generasi inovator Indonesia menuju Indonesia Emas 2045.
+            <p className="max-w-xl text-[color:var(--color-muted)]">
+              Semua sumber penting untuk pendaftaran dan pengumpulan karya.
             </p>
+          </FadeIn>
 
-            <div className="flex flex-wrap justify-center gap-5">
-              <button className="bg-[#00635D] text-white px-10 py-5 rounded-3xl text-xl font-bold glow hover:scale-105 transition-all">
-                Join Competition
-              </button>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {resources.map((item) => {
+              const Icon = item.icon;
+              const isDisabled = item.status === 'disabled';
 
-              <button className="bg-[#52C6A4] text-white px-10 py-5 rounded-3xl text-xl font-bold hover:scale-105 transition-all">
-                Submit Your Idea
-              </button>
-            </div>
+              return (
+                <div
+                  key={item.title}
+                  className={`glass-card rounded-3xl p-6 transition ${
+                    isDisabled ? 'opacity-60' : 'hover:-translate-y-1'
+                  }`}
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2dd4bf]/20 text-[color:var(--color-primary)]">
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+                    {item.desc}
+                  </p>
+
+                  {isDisabled ? (
+                    <span className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-white/70 px-4 py-2 text-sm font-semibold text-[color:var(--color-muted)]">
+                      {item.cta}
+                    </span>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--color-secondary)]"
+                    >
+                      {item.cta}
+                    </a>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <footer id="contact" className="px-6 pb-10">
-        <div className="max-w-7xl mx-auto glass rounded-[40px] p-12">
-          <div className="grid lg:grid-cols-4 gap-10">
-            <div>
-              <h3 className="text-3xl font-black text-[#00635D] mb-5">
-                BEC 2026
-              </h3>
+      <section id="dokumentasi" className="py-24 md:py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <FadeIn className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+              Dokumentasi
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+              Suasana BEC Sebelumnya
+            </h2>
+            <p className="mt-4 text-[color:var(--color-muted)]">
+              Highlight dari presentasi, expo, hingga awarding night.
+            </p>
+          </FadeIn>
 
-              <p className="leading-relaxed">
-                National Essay Competition by RKIM Universitas Brawijaya.
+          <div className="mt-12">
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination]}
+              loop
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3500, disableOnInteraction: false }}
+              spaceBetween={24}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 1.2 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 2.6 },
+              }}
+            >
+              {gallery.map((item) => (
+                <SwiperSlide key={item.title}>
+                  <div className="group relative overflow-hidden rounded-[32px]">
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      loading="lazy"
+                      className="h-80 w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
+                    <div className="absolute bottom-5 left-5">
+                      <p className="text-sm uppercase tracking-[2px] text-white/70">
+                        BEC Documentation
+                      </p>
+                      <p className="text-lg font-semibold text-white">
+                        {item.title}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </section>
+
+      <section id="sponsorship" className="py-24 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                Sponsorship
               </p>
+              <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
+                Bersama Mitra Terbaik
+              </h2>
             </div>
+            <p className="max-w-xl text-[color:var(--color-muted)]">
+              Ruang kolaborasi strategis dengan institusi dan brand pendukung
+              kompetisi.
+            </p>
+          </FadeIn>
 
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {sponsors.map((name) => (
+              <div
+                key={name}
+                className="glass-card group flex items-center justify-center rounded-3xl p-6 text-center transition hover:-translate-y-1"
+              >
+                <span className="text-sm font-semibold uppercase tracking-[2px] text-slate-500 transition group-hover:text-[color:var(--color-primary)]">
+                  {name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer id="kontak" className="bg-[color:var(--color-primary)] py-16 text-white">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-10 md:grid-cols-2">
             <div>
-              <h4 className="text-2xl font-black text-[#00635D] mb-5">
-                Quick Links
-              </h4>
-
-              <ul className="space-y-3">
-                {['Home', 'Theme', 'Timeline', 'FAQ'].map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-2xl font-black text-[#00635D] mb-5">
-                Contact Person
-              </h4>
-
-              <div className="space-y-4">
-                <div>
-                  <p className="font-bold">Fahri</p>
-                  <p>Sains & Teknologi</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">Dera</p>
-                  <p>Sosial & Humaniora</p>
-                </div>
+              <p className="text-xs uppercase tracking-[3px] text-white/70">
+                Narahubung
+              </p>
+              <h2 className="mt-4 text-2xl font-semibold">BEC 2026</h2>
+              <div className="mt-6 space-y-3 text-sm text-white/80">
+                <p>WhatsApp PIC 1: +62 XXX XXX XXXX</p>
+                <p>WhatsApp PIC 2: +62 XXX XXX XXXX</p>
+                <p>Email: bec2026@example.com</p>
               </div>
             </div>
 
             <div>
-              <h4 className="text-2xl font-black text-[#00635D] mb-5">
-                Location
-              </h4>
-
-              <p>
-                Gedung Widyaloka
-                <br />
-                Universitas Brawijaya
-                <br />
-                Malang
+              <p className="text-xs uppercase tracking-[3px] text-white/70">
+                Sosial Media
               </p>
+              <div className="mt-6 space-y-3 text-sm text-white/80">
+                {socials.map((item) => (
+                  <div key={item.label} className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-[color:var(--color-accent)]"></span>
+                    <span>
+                      {item.label}: {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-[#CAE7DC] mt-10 pt-8 text-center">
-            <p>© RKIM UB 2026 — Brawijaya Essay Competition</p>
+          <div className="mt-12 border-t border-white/20 pt-6 text-sm text-white/60">
+            <p>© 2026 RKIM Universitas Brawijaya - Brawijaya Essay Competition.</p>
           </div>
         </div>
       </footer>

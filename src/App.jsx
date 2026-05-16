@@ -111,8 +111,9 @@ const timeline = [
 const resources = [
   {
     icon: CalendarClock,
-    title: 'Pendaftaran Abstrak',
+    title: 'Pendaftaran & Pengumpulan Abstrak',
     desc: 'Formulir pendaftaran untuk tim baru dan unggah abstrak.',
+    color: 'from-[#0f766e] to-[#2dd4bf]',
     cta: 'Daftar Sekarang',
     status: 'active',
     href: '#kontak',
@@ -121,24 +122,10 @@ const resources = [
     icon: FileText,
     title: 'Buku Panduan',
     desc: 'Panduan resmi, format penulisan, dan rubric penilaian.',
+    color: 'from-[#2dd4bf] to-[#fbbf24]',
     cta: 'Unduh Panduan',
     status: 'active',
     href: '#kontak',
-  },
-  {
-    icon: BookOpen,
-    title: 'Pengumpulan Full Paper',
-    desc: 'Unggah full paper setelah pengumuman lolos abstrak.',
-    cta: 'Kirim Full Paper',
-    status: 'active',
-    href: '#kontak',
-  },
-  {
-    icon: Sparkles,
-    title: 'Poster & PPT',
-    desc: 'Template poster dan presentasi akan menyusul.',
-    cta: 'Segera Hadir',
-    status: 'disabled',
   },
 ];
 
@@ -229,7 +216,7 @@ export default function App() {
           >
             <a href="#hero" className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--color-primary)] text-white">
-                <Sparkles size={22} />
+                <Sparkles size={24} />
               </span>
               <div>
                 <p className="text-xs uppercase tracking-[3px] text-[color:var(--color-secondary)]">
@@ -249,21 +236,6 @@ export default function App() {
                   {item.label}
                 </a>
               ))}
-            </div>
-
-            <div className="hidden items-center gap-3 lg:flex">
-              <a
-                href="#berkas"
-                className="rounded-full border border-white/70 bg-white/70 px-5 py-2 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5"
-              >
-                Buku Panduan
-              </a>
-              <a
-                href="#berkas"
-                className="rounded-full bg-[color:var(--color-primary)] px-5 py-2 text-sm font-semibold text-white shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
-              >
-                Daftar Abstrak
-              </a>
             </div>
 
             <button
@@ -308,23 +280,6 @@ export default function App() {
               </a>
             ))}
           </div>
-
-          <div className="mt-auto space-y-3">
-            <a
-              href="#berkas"
-              onClick={() => setMenuOpen(false)}
-              className="flex w-full items-center justify-center rounded-full border border-white/40 px-5 py-3 text-sm font-semibold"
-            >
-              Buku Panduan
-            </a>
-            <a
-              href="#berkas"
-              onClick={() => setMenuOpen(false)}
-              className="flex w-full items-center justify-center rounded-full bg-white text-sm font-semibold text-[color:var(--color-primary)]"
-            >
-              Daftar Abstrak
-            </a>
-          </div>
         </div>
       </div>
 
@@ -348,9 +303,7 @@ export default function App() {
                 <span className="block text-gradient">Competition 2026</span>
               </h1>
               <p className="max-w-xl text-lg text-[color:var(--color-muted)] md:text-xl text-balance">
-                Empowering young changemakers to break boundaries and create
-                impact through innovation, collaboration, and visionary thinking
-                towards Indonesia Emas 2045.
+Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045
               </p>
             </div>
 
@@ -406,9 +359,7 @@ export default function App() {
               Kompetisi Esai Nasional yang Menggerakkan Inovasi
             </h2>
             <p className="mt-4 text-lg text-[color:var(--color-muted)] text-balance">
-              Brawijaya Essay Competition 2026 menghadirkan ruang bagi mahasiswa
-              untuk menyuarakan ide, merancang solusi, dan menunjukkan dampak
-              nyata menuju Indonesia Emas 2045.
+                Brawijaya Essay Competition 2026 adalah kompetisi esai tingkat nasional yang diselenggarakan oleh Riset dan Karya Ilmiah Mahasiswa Universitas Brawijaya sebagai wadah kolaboratif bagi generasi muda Indonesia untuk menuangkan gagasan kritis, inovatif, dan solutif. Kompetisi ini bertujuan untuk mendorong mahasiswa untuk aktif menjadi pelopor inovasi dan penggerak transformasi sosial. Melalui ajang ini, peserta ditantang untuk mengembangkan kemampuan berpikir kritis, kreativitas, dan kompetensi ilmiah dalam menawarkan solusi berbasis ilmu pengetahuan dan teknologi demi menghadapi tantangan global sekaligus mendukung terwujudnya visi Indonesia Emas 2045.
             </p>
           </FadeIn>
 
@@ -557,44 +508,71 @@ export default function App() {
                 Akses Berkas & Pengumpulan
               </h2>
             </div>
-            <p className="max-w-xl text-[color:var(--color-muted)]">
-              Semua sumber penting untuk pendaftaran dan pengumpulan karya.
-            </p>
           </FadeIn>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {resources.map((item) => {
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {resources.map((item, index) => {
               const Icon = item.icon;
               const isDisabled = item.status === 'disabled';
 
               return (
-                <div
-                  key={item.title}
-                  className={`glass-card rounded-3xl p-6 transition ${
-                    isDisabled ? 'opacity-60' : 'hover:-translate-y-1'
-                  }`}
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2dd4bf]/20 text-[color:var(--color-primary)]">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-                    {item.desc}
-                  </p>
+                <FadeIn key={item.title} delay={index * 0.1}>
+                  <div
+                    className={`glass-card group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 ${
+                      isDisabled
+                        ? 'opacity-60'
+                        : 'hover:-translate-y-2 hover:shadow-xl'
+                    }`}
+                  >
+                    <div
+                      className="absolute top-0 right-0 -mr-16 -mt-16 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-20"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(135deg, #2dd4bf, #fbbf24)',
+                      }}
+                    ></div>
 
-                  {isDisabled ? (
-                    <span className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-white/70 px-4 py-2 text-sm font-semibold text-[color:var(--color-muted)]">
-                      {item.cta}
-                    </span>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[color:var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--color-secondary)]"
-                    >
-                      {item.cta}
-                    </a>
-                  )}
-                </div>
+                    <div className="relative z-10 space-y-4">
+                      <div
+                        className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transition-all duration-300 ${
+                          isDisabled ? '' : 'group-hover:scale-110'
+                        }`}
+                      >
+                        <Icon size={28} />
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[color:var(--color-secondary)]/30 text-xs font-bold text-[color:var(--color-primary)]">
+                            {index + 1}
+                          </span>
+                          <span className="h-0.5 flex-1 rounded-full bg-gradient-to-r from-[color:var(--color-secondary)] to-transparent"></span>
+                        </div>
+                        <div>
+                          <p className="text-xl font-bold text-[color:var(--color-ink)]">
+                            {item.title}
+                          </p>
+                          <p className="text-sm text-[color:var(--color-muted)] leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+
+                      {isDisabled ? (
+                        <span className="inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-white/70 px-4 py-2 text-sm font-semibold text-[color:var(--color-muted)]">
+                          {item.cta}
+                        </span>
+                      ) : (
+                        <a
+                          href={item.href}
+                          className="inline-flex w-full items-center justify-center rounded-full bg-[color:var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--color-secondary)]"
+                        >
+                          {item.cta}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </FadeIn>
               );
             })}
           </div>

@@ -22,6 +22,10 @@ import docOne from '../images/documentation/IMG_5373.JPG';
 import docTwo from '../images/documentation/IMG_5408.JPG';
 import docThree from '../images/documentation/_MG_5484.JPG';
 import docFour from '../images/documentation/_MG_5498.JPG';
+import bgImage from '../images/background/bg.jpg';
+import temaIcon from '../images/icons/tema.png';
+import pesertaIcon from '../images/icons/peserta.png';
+import tahapanIcon from '../images/icons/tahapan.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -30,16 +34,16 @@ const navItems = [
   { label: 'Tentang', href: '#tentang' },
   { label: 'Ketentuan', href: '#ketentuan' },
   { label: 'Timeline', href: '#timeline' },
-  { label: 'Berkas', href: '#berkas' },
+  { label: 'Pendaftaran', href: '#pendaftaran' },
   { label: 'Dokumentasi', href: '#dokumentasi' },
   { label: 'Sponsorship', href: '#sponsorship' },
   { label: 'Kontak', href: '#kontak' },
 ];
 
 const heroStats = [
-  { value: '10+', label: 'Subtema Esai' },
-  { value: '100+', label: 'Peserta Nasional' },
-  { value: '6', label: 'Tahapan Utama' },
+  { value: '10+', label: 'Subtema Esai', icon: temaIcon },
+  { value: '100+', label: 'Peserta Nasional', icon: pesertaIcon },
+  { value: '6', label: 'Tahapan Utama', icon: tahapanIcon },
 ];
 
 const requirementCards = [
@@ -205,19 +209,16 @@ export default function App() {
 
   return (
     <div className="relative text-[color:var(--color-ink)]">
-      <header className="sticky top-0 z-50">
+      <header className="fixed inset-x-0 top-0 z-50">
         <div className="mx-auto max-w-7xl px-6 pt-5">
           <nav
-            className={`flex items-center justify-between rounded-full px-5 py-3 transition-all duration-300 ${
-              isScrolled
-                ? 'bg-white/85 shadow-[var(--shadow-soft)] backdrop-blur-xl'
-                : 'bg-white/50 backdrop-blur-md'
-            }`}
+            className={`flex items-center justify-between rounded-full px-5 py-3 transition-all duration-300 ${isScrolled
+              ? 'bg-white/85 shadow-[var(--shadow-soft)] backdrop-blur-xl'
+              : 'bg-white/50 backdrop-blur-md'
+              }`}
           >
             <a href="#hero" className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--color-primary)] text-white">
-                <Sparkles size={24} />
-              </span>
+              <img src="/Logo.png" alt="Logo BEC" className="h-11 w-auto object-contain" />
               <div>
                 <p className="text-xs uppercase tracking-[3px] text-[color:var(--color-secondary)]">
                   RKIM UB
@@ -251,9 +252,8 @@ export default function App() {
       </header>
 
       <div
-        className={`fixed inset-0 z-50 bg-[rgba(15,118,110,0.95)] backdrop-blur-xl transition duration-300 lg:hidden ${
-          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-        }`}
+        className={`fixed inset-0 z-50 bg-[rgba(15,118,110,0.95)] backdrop-blur-xl transition duration-300 lg:hidden ${menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+          }`}
       >
         <div className="flex h-full flex-col px-6 pb-10 pt-8 text-white">
           <div className="flex items-center justify-between">
@@ -285,21 +285,32 @@ export default function App() {
 
       <section id="hero" className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
+          <div
+            className="absolute inset-0 bg-cover bg-no-repeat opacity-90"
+            style={{
+              backgroundImage: `url(${bgImage})`,
+              backgroundPosition: '60% center',
+              maskImage: 'linear-gradient(to right, transparent 0%, transparent 30%, black 75%), linear-gradient(to top, transparent 0%, black 20%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, transparent 30%, black 75%), linear-gradient(to top, transparent 0%, black 20%)',
+              WebkitMaskComposite: 'source-in',
+              maskComposite: 'intersect'
+            }}
+          ></div>
           <div className="absolute -top-40 right-0 h-[420px] w-[420px] rounded-full bg-[#2dd4bf]/35 blur-[120px] animate-[float_14s_ease-in-out_infinite]"></div>
           <div className="absolute left-0 top-16 h-[320px] w-[320px] rounded-full bg-[#fbbf24]/25 blur-[110px] animate-[float_12s_ease-in-out_infinite]"></div>
           <div className="absolute bottom-0 right-16 h-[280px] w-[280px] rounded-full bg-[#0f766e]/25 blur-[110px] animate-[float_16s_ease-in-out_infinite]"></div>
         </div>
 
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-6 pt-36 pb-24 md:pt-48 md:pb-32">
           <FadeIn className="space-y-8">
-            <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-bold tracking-[3px] text-[color:var(--color-primary)] rounded-3xl">    
-                Riset dan Karya Ilmiah Mahasiswa Presents
+            <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-bold tracking-[3px] text-[color:var(--color-primary)] rounded-3xl">
+              Riset dan Karya Ilmiah Mahasiswa Presents
             </div>
 
             <div className="space-y-4">
               <h1 className="text-4xl font-semibold leading-tight md:text-6xl lg:text-7xl">
                 Brawijaya Essay
-                <span className="block text-gradient">Competition 2026</span>
+                <span className="block bg-gradient-to-r from-[#008585] to-[#bba100] bg-clip-text text-transparent">Competition 2026</span>
               </h1>
               <p className="max-w-xl text-lg text-[color:var(--color-muted)] md:text-xl text-balance">
                 Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045
@@ -333,13 +344,20 @@ export default function App() {
 
             <div className="grid gap-4 sm:grid-cols-3">
               {heroStats.map((item) => (
-                <div key={item.label} className="glass-card rounded-2xl p-4">
-                  <p className="text-2xl font-semibold text-[color:var(--color-primary)]">
-                    {item.value}
-                  </p>
-                  <p className="text-sm text-[color:var(--color-muted)]">
-                    {item.label}
-                  </p>
+                <div key={item.label} className="glass-card flex items-center justify-between overflow-hidden rounded-2xl p-5 group hover:-translate-y-1 transition-all duration-300">
+                  <div className="relative z-10 flex flex-col justify-center">
+                    <p className="text-3xl font-bold text-[color:var(--color-primary)]">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-[color:var(--color-muted)]">
+                      {item.label}
+                    </p>
+                  </div>
+                  {item.icon && (
+                    <div className="h-16 w-16 shrink-0 transition-transform duration-500 group-hover:scale-110 sm:h-20 sm:w-20">
+                      <img src={item.icon} alt={item.label} className="h-full w-full object-contain drop-shadow-sm" />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -358,7 +376,7 @@ export default function App() {
               Kompetisi Esai Nasional yang Menggerakkan Inovasi
             </h2>
             <p className="mt-4 text-lg text-[color:var(--color-muted)] text-balance">
-                Brawijaya Essay Competition 2026 adalah kompetisi esai tingkat nasional yang diselenggarakan oleh Riset dan Karya Ilmiah Mahasiswa Universitas Brawijaya sebagai wadah kolaboratif bagi generasi muda Indonesia untuk menuangkan gagasan kritis, inovatif, dan solutif. Kompetisi ini bertujuan untuk mendorong mahasiswa untuk aktif menjadi pelopor inovasi dan penggerak transformasi sosial. Melalui ajang ini, peserta ditantang untuk mengembangkan kemampuan berpikir kritis, kreativitas, dan kompetensi ilmiah dalam menawarkan solusi berbasis ilmu pengetahuan dan teknologi demi menghadapi tantangan global sekaligus mendukung terwujudnya visi Indonesia Emas 2045.
+              Brawijaya Essay Competition 2026 adalah kompetisi esai tingkat nasional yang diselenggarakan oleh Riset dan Karya Ilmiah Mahasiswa Universitas Brawijaya sebagai wadah kolaboratif bagi generasi muda Indonesia untuk menuangkan gagasan kritis, inovatif, dan solutif. Melalui ajang ini, peserta ditantang untuk mengembangkan kemampuan berpikir kritis, kreativitas, dan kompetensi ilmiah dalam menawarkan solusi berbasis ilmu pengetahuan dan teknologi demi menghadapi tantangan global sekaligus mendukung terwujudnya visi Indonesia Emas 2045.
             </p>
           </FadeIn>
 
@@ -388,8 +406,8 @@ export default function App() {
               return (
                 <FadeIn key={item.title} delay={index * 0.1}>
                   <div className="glass-card group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                    <div className="absolute top-0 right-0 -mr-16 -mt-16 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-20" style={{backgroundImage: `linear-gradient(135deg, #2dd4bf, #fbbf24)`}}></div>
-                    
+                    <div className="absolute top-0 right-0 -mr-16 -mt-16 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-20" style={{ backgroundImage: `linear-gradient(135deg, #2dd4bf, #fbbf24)` }}></div>
+
                     <div className="relative z-10 space-y-4">
                       <div className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transition-all duration-300 group-hover:scale-110`}>
                         <Icon size={28} />
@@ -470,38 +488,58 @@ export default function App() {
             </p>
           </FadeIn>
 
-          <div className="relative mt-12">
-            <div className="absolute left-0 right-0 top-8 hidden h-px bg-white/70 lg:block"></div>
-            <div className="grid gap-6 lg:grid-cols-6">
-              {timeline.map((item, index) => (
-                <FadeIn key={item.title} delay={index * 0.05}>
-                  <div className="glass-card relative rounded-3xl p-5 pt-8">
-                    <div className="absolute -top-4 left-5 flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-primary)] text-sm font-semibold text-white">
-                      {index + 1}
+          <div className="relative mt-16 mx-auto max-w-4xl">
+            {/* The vertical line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[color:var(--color-primary)] via-[color:var(--color-secondary)] to-[color:var(--color-accent)] md:-translate-x-1/2 rounded-full opacity-30"></div>
+
+            <div className="space-y-12">
+              {timeline.map((item, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <FadeIn key={item.title} delay={index * 0.1}>
+                    <div className={`relative flex flex-col md:flex-row items-start md:items-center ${isEven ? 'md:flex-row-reverse' : ''} gap-8`}>
+
+                      {/* Timeline Dot */}
+                      <div className="absolute left-4 md:left-1/2 top-8 md:top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-4 border-[color:var(--color-primary)] shadow-[0_0_15px_rgba(15,118,110,0.5)] z-10 flex items-center justify-center">
+                        <div className="h-2 w-2 rounded-full bg-[color:var(--color-accent)]"></div>
+                      </div>
+
+                      {/* Content Card */}
+                      <div className={`pl-16 pr-2 md:pl-0 md:pr-0 md:w-1/2 flex ${isEven ? 'md:justify-start' : 'md:justify-end'} w-full`}>
+                        <div className={`glass-card relative rounded-3xl p-5 md:p-8 w-full md:max-w-[400px] group hover:-translate-y-1 transition-all duration-300 hover:shadow-xl`}>
+                          <div className="absolute -top-4 right-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-lg font-bold text-white shadow-lg transition-transform duration-300 group-hover:scale-110 md:-top-5 md:right-8 md:h-12 md:w-12">
+                            {index + 1}
+                          </div>
+
+                          <p className="text-xs font-bold uppercase tracking-[2px] text-[color:var(--color-secondary)] mb-2">
+                            {item.date}
+                          </p>
+                          <h3 className="text-xl font-bold text-[color:var(--color-ink)] group-hover:text-[color:var(--color-primary)] transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-sm text-[color:var(--color-muted)] leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Empty space for the other half on desktop */}
+                      <div className="hidden md:block md:w-1/2"></div>
                     </div>
-                    <p className="text-xs font-semibold uppercase tracking-[2px] text-[color:var(--color-secondary)]">
-                      {item.date}
-                    </p>
-                    <h3 className="mt-3 text-lg font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-                      {item.desc}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
+                  </FadeIn>
+                )
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="berkas" className="py-24 md:py-28">
+      <section id="pendaftaran" className="py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
-                Berkas
+                Pendaftaran
               </p>
               <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
                 Akses Berkas & Pengumpulan
@@ -517,11 +555,10 @@ export default function App() {
               return (
                 <FadeIn key={item.title} delay={index * 0.1}>
                   <div
-                    className={`glass-card group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 ${
-                      isDisabled
-                        ? 'opacity-60'
-                        : 'hover:-translate-y-2 hover:shadow-xl'
-                    }`}
+                    className={`glass-card group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 ${isDisabled
+                      ? 'opacity-60'
+                      : 'hover:-translate-y-2 hover:shadow-xl'
+                      }`}
                   >
                     <div
                       className="absolute top-0 right-0 -mr-16 -mt-16 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-20"
@@ -533,9 +570,8 @@ export default function App() {
 
                     <div className="relative z-10 space-y-4">
                       <div
-                        className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transition-all duration-300 ${
-                          isDisabled ? '' : 'group-hover:scale-110'
-                        }`}
+                        className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transition-all duration-300 ${isDisabled ? '' : 'group-hover:scale-110'
+                          }`}
                       >
                         <Icon size={28} />
                       </div>

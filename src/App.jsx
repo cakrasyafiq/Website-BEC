@@ -33,18 +33,23 @@ import 'swiper/css/pagination';
 
 export const WEB_CONFIG = {
   links: {
-    pendaftaran: 'https://forms.gle/U7ZdFqDJeTWFayhq8', // Ganti dengan link form pendaftaran
-    bukuPanduan: '#', // Ganti dengan link buku panduan
+    pendaftaran: 'https://bit.ly/Pendaftaran-BEC2026',
+    bukuPanduan: 'https://bit.ly/BukuPanduanBEC2026',
+    submitFullPaper: 'https://bit.ly/SubmitFullPaper-BEC2026',
+    submitPosterPPT: 'https://bit.ly/SubmitPosterPPT-BEC2026',
+    posterCaption: 'https://bit.ly/PosterBEC2026',
+    twibbon: 'https://bit.ly/TwibbonPesertaBEC2026',
     kontakSponsorship: 'https://wa.me/6281234567890', // Ganti dengan link kontak WA sponsorship
     proposalSponsorship: '/proposal-sponsorship.pdf', // Ganti dengan link PDF proposal
   },
   info: {
-    pic1: '+62 XXX XXX XXXX',
-    pic2: '+62 XXX XXX XXXX',
-    email: 'bec2026@example.com',
-    instagram: '@bec2026',
-    tiktok: '@bec2026',
-    linkedin: 'BEC 2026',
+    namaPic1: 'Fahri (Bidang Ilmu Sains dan Teknologi)',
+    namaPic2: 'Dera (Bidang Ilmu Sosial dan Humaniora)',
+    pic1: '+62 877 9611 8826',
+    pic2: '+62 819 9045 7943',
+    email: 'becrkim2@gmail.com',
+    instagram: '@bec_rkimub',
+    tiktok: '@bec_rkimub',
   }
 };
 
@@ -68,39 +73,34 @@ const requirementCards = [
   {
     icon: GraduationCap,
     title: 'Mahasiswa aktif',
-    desc: 'D3, D4, atau S1 dari seluruh universitas di Indonesia.',
+    desc: 'Peserta merupakan mahasiswa aktif D3/D4/S1 se-Indonesia dibuktikan dengan scan Kartu Tanda Mahasiswa (KTM) atau surat keterangan aktif mahasiswa.',
   },
   {
     icon: Users,
     title: 'Tim 2-3 orang',
-    desc: 'Satu universitas, lintas jurusan diperbolehkan.',
+    desc: 'Kompetisi esai merupakan kompetisi tim yang terdiri dari 2 atau 3 mahasiswa, di mana satu mahasiswa sebagai ketua dan yang lainnya sebagai anggota tim. Anggota tim boleh berbeda fakultas, tetapi masih dalam satu perguruan tinggi yang sama.',
   },
   {
     icon: BadgeCheck,
-    title: 'Karya orisinal',
-    desc: 'Belum pernah dilombakan, bebas plagiarisme, dan etis.',
-  },
-  {
-    icon: FileText,
-    title: 'Format resmi',
-    desc: 'Mengikuti template, gaya sitasi, dan format penulisan.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Etika akademik',
-    desc: 'Tidak mengandung SARA, hoaks, atau unsur merugikan.',
+    title: 'Beretika akademik',
+    desc: 'Karya esai yang diikutsertakan dalam lomba tidak mengandung unsur SARA, pornografi, dan apa pun yang bertentangan dengan hukum di Indonesia.',
   },
   {
     icon: BookOpen,
-    title: 'Berbasis riset',
-    desc: 'Solusi didukung data, referensi kredibel, dan analisis.',
+    title: 'Karya Orisinal',
+    desc: 'Karya esai yang dikirimkan harus orisinal dan belum pernah diikutsertakan/tidak sedang diikutsertakan dalam lomba lain, serta tidak menjadi finalis/telah memenangkan kompetisi esai sebelumnya di tempat lain',
+  },
+  {
+    icon: FileText,
+    title: 'Format Essay Ilmiah',
+    desc: 'Mengikuti template, gaya sitasi, dan format penulisan. Solusi didukung data, referensi kredibel, dan analisis.',
   },
 ];
 
 const timeline = [
   {
-    date: '25 Mei - 15 Juni 2026',
-    title: 'Pendaftaran & Pengumpulan Abstrak',
+    date: '20 Mei s.d. 15 Juni 2026',
+    title: 'Pendaftaran dan Pengumpulan Abstrak',
     desc: 'Daftar online dan unggah abstrak pertama.',
   },
   {
@@ -109,14 +109,49 @@ const timeline = [
     desc: 'Seleksi abstrak dan pengumuman tahap lanjut.',
   },
   {
-    date: 'Juni - Juli 2026',
-    title: 'Pengumpulan Full Paper',
-    desc: 'Submit full paper sesuai buku panduan.',
+    date: '20 Juni s.d. 8 Juli 2026',
+    title: 'Pengumpulan Full-Paper Gelombang 1',
+    desc: 'Pengumpulan full paper gelombang pertama.',
+  },
+  {
+    date: '9 s.d. 16 Juli 2026',
+    title: 'Pengumpulan Full-Paper Gelombang 2',
+    desc: 'Pengumpulan full paper gelombang kedua.',
+  },
+  {
+    date: '17 s.d. 24 Juli 2026',
+    title: 'Pengumpulan Full-Paper Gelombang 3',
+    desc: 'Pengumpulan full paper gelombang ketiga.',
+  },
+  {
+    date: '4 Juli s.d. 16 Juli 2026',
+    title: 'Mentoring Karya',
+    desc: 'Sesi mentoring untuk penyempurnaan karya.',
+  },
+  {
+    date: '18 Juli s.d. 16 Agustus 2026',
+    title: 'Penilaian Full-Paper',
+    desc: 'Proses penilaian karya oleh dewan juri.',
   },
   {
     date: '18 Agustus 2026',
     title: 'Pengumuman Finalis',
     desc: 'Tim finalis diumumkan secara resmi.',
+  },
+  {
+    date: '23 Agustus 2026',
+    title: 'Technical Meeting',
+    desc: 'Pengarahan teknis untuk para finalis.',
+  },
+  {
+    date: '2 s.d. 3 September 2026',
+    title: 'Pengumpulan poster dan PPT finalis',
+    desc: 'Batas akhir pengumpulan poster dan bahan presentasi.',
+  },
+  {
+    date: '4 s.d. 5 September 2026',
+    title: 'Voting Poster Favorit di Instagram @bec_rkimub',
+    desc: 'Dukung poster favoritmu melalui Instagram.',
   },
   {
     date: '5 September 2026',
@@ -125,7 +160,7 @@ const timeline = [
   },
   {
     date: '6 September 2026',
-    title: 'Expo, Seminar & Awarding',
+    title: 'Expo, Seminar, dan Awarding',
     desc: 'Pameran karya, seminar, dan awarding.',
   },
 ];
@@ -143,11 +178,47 @@ const resources = [
   {
     icon: FileText,
     title: 'Buku Panduan',
-    desc: 'Panduan resmi, format penulisan, dan rubric penilaian.',
+    desc: 'Panduan resmi, format penulisan, dan rubrik penilaian.',
     color: 'from-[#2dd4bf] to-[#fbbf24]',
     cta: 'Unduh Panduan',
     status: 'active',
     href: WEB_CONFIG.links.bukuPanduan,
+  },
+  {
+    icon: FileCheck,
+    title: 'Pengumpulan Full Paper',
+    desc: 'Tautan pengumpulan dokumen full paper esai.',
+    color: 'from-[#fbbf24] to-[#f59e0b]',
+    cta: 'Kumpulkan Paper',
+    status: 'active',
+    href: WEB_CONFIG.links.submitFullPaper,
+  },
+  {
+    icon: BookOpen,
+    title: 'Pengumpulan Poster & PPT',
+    desc: 'Tautan pengumpulan poster dan presentasi (khusus finalis).',
+    color: 'from-[#f59e0b] to-[#ea580c]',
+    cta: 'Kumpulkan Berkas',
+    status: 'active',
+    href: WEB_CONFIG.links.submitPosterPPT,
+  },
+  {
+    icon: Sparkles,
+    title: 'Poster & Caption BEC 2026',
+    desc: 'Unduh poster resmi dan panduan caption BEC 2026.',
+    color: 'from-[#ea580c] to-[#e11d48]',
+    cta: 'Akses Poster',
+    status: 'active',
+    href: WEB_CONFIG.links.posterCaption,
+  },
+  {
+    icon: Users,
+    title: 'Twibbon Peserta',
+    desc: 'Unduh dan gunakan twibbon resmi peserta BEC 2026.',
+    color: 'from-[#e11d48] to-[#9f1239]',
+    cta: 'Unduh Twibbon',
+    status: 'active',
+    href: WEB_CONFIG.links.twibbon,
   },
 ];
 
@@ -174,7 +245,6 @@ const gallery = [
 const socials = [
   { label: 'Instagram', value: WEB_CONFIG.info.instagram },
   { label: 'TikTok', value: WEB_CONFIG.info.tiktok },
-  { label: 'LinkedIn', value: WEB_CONFIG.info.linkedin },
   { label: 'Email', value: WEB_CONFIG.info.email },
 ];
 
@@ -321,7 +391,7 @@ export default function App() {
                 <span className="block bg-gradient-to-r from-[#008585] to-[#bba100] bg-clip-text text-transparent">Competition 2026</span>
               </h1>
               <p className="max-w-xl text-lg text-[color:var(--color-muted)] md:text-xl text-balance">
-                Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045
+                Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045.
               </p>
             </div>
 
@@ -393,19 +463,19 @@ export default function App() {
               {
                 icon: Globe,
                 title: 'Tema Besar',
-                subtitle: 'Indonesia Emas 2045',
+                subtitle: 'Empowering Young Changemakers to Break Boundaries and Create Impact through Innovation, Collaboration, and Visionary Thinking Towards Indonesia Emas 2045',
                 color: 'from-[#0f766e] to-[#2dd4bf]',
               },
               {
                 icon: FileCheck,
                 title: 'Tahapan',
-                subtitle: 'Seleksi abstrak, full paper, dan presentasi',
+                subtitle: 'Seleksi abstrak, seleksi full paper, presentasi, dan tanya jawab',
                 color: 'from-[#2dd4bf] to-[#fbbf24]',
               },
               {
                 icon: Trophy,
                 title: 'Puncak Acara',
-                subtitle: 'Expo karya dan awarding nasional',
+                subtitle: 'Poster exhibition, seminar, dan awarding',
                 color: 'from-[#fbbf24] to-[#0f766e]',
               },
             ].map((item, index) => {
@@ -459,14 +529,14 @@ export default function App() {
             </div>
           </FadeIn>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
             {requirementCards.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.title}
-                  className="glass-card group rounded-3xl p-6 transition hover:-translate-y-1"
+                  className="glass-card group rounded-3xl p-6 transition hover:-translate-y-1 w-full md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2dd4bf]/20 text-[color:var(--color-primary)]">
                     <Icon size={24} />
@@ -550,7 +620,7 @@ export default function App() {
                 Pendaftaran
               </p>
               <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
-                Akses Berkas & Pengumpulan
+                Tautan Penting
               </h2>
             </div>
           </FadeIn>
@@ -721,8 +791,8 @@ export default function App() {
               </p>
               <h2 className="mt-4 text-2xl font-semibold">BEC 2026</h2>
               <div className="mt-6 space-y-3 text-sm text-white/80">
-                <p>WhatsApp PIC 1: {WEB_CONFIG.info.pic1}</p>
-                <p>WhatsApp PIC 2: {WEB_CONFIG.info.pic2}</p>
+                <p>WhatsApp PIC 1: {WEB_CONFIG.info.namaPic1} ({WEB_CONFIG.info.pic1})</p>
+                <p>WhatsApp PIC 2: {WEB_CONFIG.info.namaPic2} ({WEB_CONFIG.info.pic2})</p>
                 <p>Email: {WEB_CONFIG.info.email}</p>
               </div>
             </div>

@@ -26,9 +26,27 @@ import bgImage from '../images/background/bg.jpg';
 import temaIcon from '../images/icons/tema.png';
 import pesertaIcon from '../images/icons/peserta.png';
 import tahapanIcon from '../images/icons/tahapan.png';
+import sponsorshipIcon from '../images/icons/sponsorship.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+export const WEB_CONFIG = {
+  links: {
+    pendaftaran: 'https://forms.gle/U7ZdFqDJeTWFayhq8', // Ganti dengan link form pendaftaran
+    bukuPanduan: '#', // Ganti dengan link buku panduan
+    kontakSponsorship: 'https://wa.me/6281234567890', // Ganti dengan link kontak WA sponsorship
+    proposalSponsorship: '/proposal-sponsorship.pdf', // Ganti dengan link PDF proposal
+  },
+  info: {
+    pic1: '+62 XXX XXX XXXX',
+    pic2: '+62 XXX XXX XXXX',
+    email: 'bec2026@example.com',
+    instagram: '@bec2026',
+    tiktok: '@bec2026',
+    linkedin: 'BEC 2026',
+  }
+};
 
 const navItems = [
   { label: 'Tentang', href: '#tentang' },
@@ -120,7 +138,7 @@ const resources = [
     color: 'from-[#0f766e] to-[#2dd4bf]',
     cta: 'Daftar Sekarang',
     status: 'active',
-    href: '#kontak',
+    href: WEB_CONFIG.links.pendaftaran,
   },
   {
     icon: FileText,
@@ -129,7 +147,7 @@ const resources = [
     color: 'from-[#2dd4bf] to-[#fbbf24]',
     cta: 'Unduh Panduan',
     status: 'active',
-    href: '#kontak',
+    href: WEB_CONFIG.links.bukuPanduan,
   },
 ];
 
@@ -152,22 +170,12 @@ const gallery = [
   },
 ];
 
-const sponsors = [
-  'Bank Partner',
-  'Tech Partner',
-  'Media Partner',
-  'Education Partner',
-  'Community Partner',
-  'Startup Partner',
-  'Research Partner',
-  'Innovation Partner',
-];
 
 const socials = [
-  { label: 'Instagram', value: '@bec2026' },
-  { label: 'TikTok', value: '@bec2026' },
-  { label: 'LinkedIn', value: 'BEC 2026' },
-  { label: 'Email', value: 'bec2026@example.com' },
+  { label: 'Instagram', value: WEB_CONFIG.info.instagram },
+  { label: 'TikTok', value: WEB_CONFIG.info.tiktok },
+  { label: 'LinkedIn', value: WEB_CONFIG.info.linkedin },
+  { label: 'Email', value: WEB_CONFIG.info.email },
 ];
 
 function FadeIn({ children, delay = 0, className = '' }) {
@@ -328,13 +336,13 @@ export default function App() {
               </div>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="#berkas"
+                  href={WEB_CONFIG.links.pendaftaran}
                   className="rounded-full bg-[color:var(--color-accent)] px-5 py-2 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5"
                 >
                   Daftar Sekarang
                 </a>
                 <a
-                  href="#berkas"
+                  href={WEB_CONFIG.links.bukuPanduan}
                   className="rounded-full border border-white/70 bg-white/60 px-5 py-2 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5"
                 >
                   Lihat Panduan
@@ -671,33 +679,36 @@ export default function App() {
 
       <section id="sponsorship" className="py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <FadeIn className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
+          <FadeIn className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
                 Sponsorship
               </p>
               <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
-                Bersama Mitra Terbaik
+                Bersama Mewujudkan Indonesia Emas 2045
               </h2>
             </div>
-            <p className="max-w-xl text-[color:var(--color-muted)]">
-              Ruang kolaborasi strategis dengan institusi dan brand pendukung
-              kompetisi.
-            </p>
+            <div className="h-32 w-32 shrink-0 md:h-48 md:w-48 lg:h-56 lg:w-56 md:translate-y-12">
+              <img src={sponsorshipIcon} alt="Sponsorship Icon" className="h-full w-full object-contain" />
+            </div>
           </FadeIn>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {sponsors.map((name) => (
-              <div
-                key={name}
-                className="glass-card group flex items-center justify-center rounded-3xl p-6 text-center transition hover:-translate-y-1"
-              >
-                <span className="text-sm font-semibold uppercase tracking-[2px] text-slate-500 transition group-hover:text-[color:var(--color-primary)]">
-                  {name}
-                </span>
-              </div>
-            ))}
-          </div>
+          <FadeIn delay={0.2} className="mt-12 flex flex-wrap gap-4">
+            <a
+              href={WEB_CONFIG.links.kontakSponsorship}
+              className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-primary)] px-8 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
+            >
+              Kontak Tim Sponsorship
+            </a>
+            <a
+              href={WEB_CONFIG.links.proposalSponsorship}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-[color:var(--color-primary)] bg-transparent px-8 py-3 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5 hover:bg-[color:var(--color-primary)]/5"
+            >
+              Lihat Proposal
+            </a>
+          </FadeIn>
         </div>
       </section>
 
@@ -710,9 +721,9 @@ export default function App() {
               </p>
               <h2 className="mt-4 text-2xl font-semibold">BEC 2026</h2>
               <div className="mt-6 space-y-3 text-sm text-white/80">
-                <p>WhatsApp PIC 1: +62 XXX XXX XXXX</p>
-                <p>WhatsApp PIC 2: +62 XXX XXX XXXX</p>
-                <p>Email: bec2026@example.com</p>
+                <p>WhatsApp PIC 1: {WEB_CONFIG.info.pic1}</p>
+                <p>WhatsApp PIC 2: {WEB_CONFIG.info.pic2}</p>
+                <p>Email: {WEB_CONFIG.info.email}</p>
               </div>
             </div>
 

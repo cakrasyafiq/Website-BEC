@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
@@ -286,7 +287,9 @@ export default function App() {
   }, [menuOpen]);
 
   return (
-    <div className="relative text-[color:var(--color-ink)]">
+    <>
+      <Analytics />
+      <div className="relative text-[color:var(--color-ink)]">
       <header className="fixed inset-x-0 top-0 z-50">
         <div className="mx-auto max-w-7xl px-6 pt-5">
           <nav
@@ -819,6 +822,7 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }

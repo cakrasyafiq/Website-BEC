@@ -27,7 +27,6 @@ import bgImage from '../images/background/bg.jpg';
 import temaIcon from '../images/icons/tema.png';
 import pesertaIcon from '../images/icons/peserta.png';
 import tahapanIcon from '../images/icons/tahapan.png';
-import sponsorshipIcon from '../images/icons/sponsorship.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -40,14 +39,9 @@ export const WEB_CONFIG = {
     submitPosterPPT: 'https://bit.ly/SubmitPosterPPT-BEC2026',
     posterCaption: 'https://bit.ly/PosterBEC2026',
     twibbon: 'https://bit.ly/TwibbonPesertaBEC2026',
-    kontakSponsorship: 'https://wa.me/6281234567890', // Ganti dengan link kontak WA sponsorship
-    proposalSponsorship: '/proposal-sponsorship.pdf', // Ganti dengan link PDF proposal
+    proposalSponsorship: 'https://drive.google.com/file/d/1ZMijYVGwNPgqVyjZKClb5dzQJOKkj2aH/view?usp=drivesdk', // Ganti dengan link PDF proposal
   },
   info: {
-    namaPic1: 'Fahri (Bidang Ilmu Sains dan Teknologi)',
-    namaPic2: 'Dera (Bidang Ilmu Sosial dan Humaniora)',
-    pic1: '+62 877 9611 8826',
-    pic2: '+62 819 9045 7943',
     email: 'becrkim2@gmail.com',
     instagram: '@bec_rkimub',
     tiktok: '@bec_rkimub',
@@ -249,6 +243,46 @@ const socials = [
   { label: 'Email', value: WEB_CONFIG.info.email },
 ];
 
+const contactGroups = [
+  {
+    title: 'Teknis Perlombaan',
+    contacts: [
+      {
+        label: 'Bidang Ilmu Sains dan Teknologi',
+        name: 'Fahri',
+        phone: '+62 877 9611 8826',
+      },
+      {
+        label: 'Bidang Ilmu Sosial dan Humaniora',
+        name: 'Dera',
+        phone: '+62 819 9045 7943',
+      },
+    ],
+  },
+  {
+    title: 'Media Partnership',
+    contacts: [
+      { name: 'Melody', phone: '+62 859-1755-20793' },
+      { name: 'Rachel', phone: '+62 821-6169-4570' },
+    ],
+  },
+  {
+    title: 'Sponsorship',
+    contacts: [
+      { name: 'Dipta', phone: '+62 858-2035-1336' },
+      { name: 'Kayy', phone: '+62 822-4562-1328' },
+    ],
+  },
+];
+
+const formatContact = (contact) =>
+  contact.label
+    ? `${contact.label} | ${contact.phone} | ${contact.name}`
+    : `${contact.name} | ${contact.phone}`;
+
+const sponsorshipContacts =
+  contactGroups.find((group) => group.title === 'Sponsorship')?.contacts ?? [];
+
 function FadeIn({ children, delay = 0, className = '' }) {
   return (
     <motion.div
@@ -383,7 +417,7 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-6 pt-36 pb-24 md:pt-48 md:pb-32">
           <FadeIn className="space-y-8">
             <div className="glass-pill inline-flex items-center gap-3 px-4 py-2 text-xs font-bold tracking-[3px] text-[color:var(--color-primary)] rounded-3xl">
-              Riset dan Karya Ilmiah Mahasiswa Presents
+              Riset dan Karya Ilmiah Mahasiswa Universitas Brawijaya Presents
             </div>
 
             <div className="space-y-4">
@@ -748,7 +782,11 @@ export default function App() {
         </div>
       </section>
 
-      <section id="sponsorship" className="py-24 md:py-28">
+      <section id="sponsorship" className="relative py-24 md:py-28">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute left-0 top-12 h-64 w-64 rounded-full bg-[#2dd4bf]/25 blur-[120px]"></div>
+          <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-[#fbbf24]/20 blur-[120px]"></div>
+        </div>
         <div className="mx-auto max-w-6xl px-6">
           <FadeIn className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -759,26 +797,68 @@ export default function App() {
                 Bersama Mewujudkan Indonesia Emas 2045
               </h2>
             </div>
-            <div className="h-32 w-32 shrink-0 md:h-48 md:w-48 lg:h-56 lg:w-56 md:translate-y-12">
-              <img src={sponsorshipIcon} alt="Sponsorship Icon" className="h-full w-full object-contain" />
-            </div>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="mt-12 flex flex-wrap gap-4">
-            <a
-              href={WEB_CONFIG.links.kontakSponsorship}
-              className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-primary)] px-8 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
-            >
-              Kontak Tim Sponsorship
-            </a>
-            <a
-              href={WEB_CONFIG.links.proposalSponsorship}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-[color:var(--color-primary)] bg-transparent px-8 py-3 text-sm font-semibold text-[color:var(--color-primary)] transition hover:-translate-y-0.5 hover:bg-[color:var(--color-primary)]/5"
-            >
-              Lihat Proposal
-            </a>
+          <FadeIn delay={0.2} className="mt-12 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
+            <div className="glass-card relative overflow-hidden rounded-3xl p-8">
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-[#2dd4bf]/40 to-[#fbbf24]/30 blur-2xl"></div>
+              <div className="relative z-10 space-y-8">
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f766e] to-[#2dd4bf] text-white shadow-lg">
+                    <Handshake size={26} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                      Kontak Sponsorship
+                    </p>
+                    <h3 className="text-2xl font-semibold">Tim Sponsorship BEC 2026</h3>
+                  </div>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {sponsorshipContacts.map((contact) => (
+                    <div
+                      key={`sponsorship-${contact.name}`}
+                      className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 shadow-sm"
+                    >
+                      <p className="text-sm font-semibold text-[color:var(--color-ink)]">
+                        {contact.name}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[2px] text-[color:var(--color-secondary)]">
+                        WhatsApp
+                      </p>
+                      <p className="text-sm text-[color:var(--color-muted)]">
+                        {contact.phone}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card relative overflow-hidden rounded-3xl p-8">
+              <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-gradient-to-br from-[#0f766e]/30 to-[#2dd4bf]/20 blur-2xl"></div>
+              <div className="relative z-10 flex h-full flex-col justify-between gap-6">
+                <div className="space-y-4">
+                  <div className="space-y-3">
+                    <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+                      Proposal
+                    </p>
+                    <h3 className="text-2xl font-semibold">Sponsorship Kit 2026</h3>
+                    <p className="text-sm text-[color:var(--color-muted)]">
+                      Detail paket kemitraan, benefit, dan peluang kolaborasi untuk BEC 2026.
+                    </p>
+                  </div>
+                </div>
+                <a
+                  href={WEB_CONFIG.links.proposalSponsorship}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-primary)] px-8 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
+                >
+                  Lihat Proposal
+                </a>
+              </div>
+            </div>
           </FadeIn>
         </div>
       </section>
@@ -788,13 +868,22 @@ export default function App() {
           <div className="grid gap-10 md:grid-cols-2">
             <div>
               <p className="text-xs uppercase tracking-[3px] text-white/70">
-                Narahubung
+                Contact Person
               </p>
               <h2 className="mt-4 text-2xl font-semibold">BEC 2026</h2>
-              <div className="mt-6 space-y-3 text-sm text-white/80">
-                <p>WhatsApp PIC 1: {WEB_CONFIG.info.namaPic1} ({WEB_CONFIG.info.pic1})</p>
-                <p>WhatsApp PIC 2: {WEB_CONFIG.info.namaPic2} ({WEB_CONFIG.info.pic2})</p>
-                <p>Email: {WEB_CONFIG.info.email}</p>
+              <div className="mt-6 space-y-6 text-sm text-white/80">
+                {contactGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="text-xs uppercase tracking-[2px] text-white/60">
+                      {group.title}
+                    </p>
+                    <div className="mt-2 space-y-2">
+                      {group.contacts.map((contact) => (
+                        <p key={`${group.title}-${contact.name}`}>{formatContact(contact)}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 

@@ -249,12 +249,12 @@ const contactGroups = [
     contacts: [
       {
         label: 'Bidang Ilmu Sains dan Teknologi',
-        name: 'Fahri',
+        name: 'Kontak 1',
         phone: '+62 877 9611 8826',
       },
       {
         label: 'Bidang Ilmu Sosial dan Humaniora',
-        name: 'Dera',
+        name: 'Kontak 2',
         phone: '+62 819 9045 7943',
       },
     ],
@@ -262,15 +262,15 @@ const contactGroups = [
   {
     title: 'Media Partnership',
     contacts: [
-      { name: 'Melody', phone: '+62 859-1755-20793' },
-      { name: 'Rachel', phone: '+62 821-6169-4570' },
+      { name: 'Kontak 1', phone: '+62 859-1755-20793' },
+      { name: 'Kontak 2', phone: '+62 821-6169-4570' },
     ],
   },
   {
     title: 'Sponsorship',
     contacts: [
-      { name: 'Dipta', phone: '+62 858-2035-1336' },
-      { name: 'Kayy', phone: '+62 822-4562-1328' },
+      { name: 'Kontak 1', phone: '+62 858-2035-1336' },
+      { name: 'Kontak 2', phone: '+62 822-4562-1328' },
     ],
   },
 ];

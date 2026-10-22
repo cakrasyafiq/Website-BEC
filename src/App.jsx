@@ -11,9 +11,7 @@ import {
   FileCheck,
   Globe,
   GraduationCap,
-  Handshake,
   Menu,
-  ShieldCheck,
   Sparkles,
   Trophy,
   Users,
@@ -27,6 +25,16 @@ import bgImage from '../images/background/bg.jpg';
 import temaIcon from '../images/icons/tema.png';
 import pesertaIcon from '../images/icons/peserta.png';
 import tahapanIcon from '../images/icons/tahapan.png';
+import logoAyamMama from '../images/logo_sponsor/Ayam_Lengkuas_Mama.png';
+import logoBukitAsam from '../images/logo_sponsor/Bukit_Asam.png';
+import logoBulog from '../images/logo_sponsor/Bulog.png';
+import logoFramely from '../images/logo_sponsor/Framely.png';
+import logoIdearium from '../images/logo_sponsor/Idearium.png';
+import logoMendjahit from '../images/logo_sponsor/Mendjahit.png';
+import logoPelindo from '../images/logo_sponsor/Pelindo.png';
+import logoBankRaya from '../images/logo_sponsor/Raya_Bank.png';
+import logoSevenChicken from '../images/logo_sponsor/Seven_Chicken.png';
+import logoYokke from '../images/logo_sponsor/Yokke.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -280,8 +288,58 @@ const formatContact = (contact) =>
     ? `${contact.label} | ${contact.phone} | ${contact.name}`
     : `${contact.name} | ${contact.phone}`;
 
-const sponsorshipContacts =
-  contactGroups.find((group) => group.title === 'Sponsorship')?.contacts ?? [];
+const sponsors = [
+  {
+    name: 'PT Bukit Asam Tbk',
+    logo: logoBukitAsam,
+    alt: 'Logo PT Bukit Asam Tbk',
+  },
+  {
+    name: 'Perum BULOG',
+    logo: logoBulog,
+    alt: 'Logo Perum BULOG',
+  },
+  {
+    name: 'PT Pelabuhan Indonesia (Persero)',
+    logo: logoPelindo,
+    alt: 'Logo Pelindo',
+  },
+  {
+    name: 'Bank Raya',
+    logo: logoBankRaya,
+    alt: 'Logo Bank Raya',
+  },
+  {
+    name: 'Yokke',
+    logo: logoYokke,
+    alt: 'Logo Yokke',
+  },
+  {
+    name: 'Idearium Creative',
+    logo: logoIdearium,
+    alt: 'Logo Idearium Creative',
+  },
+  {
+    name: 'Framely',
+    logo: logoFramely,
+    alt: 'Logo Framely',
+  },
+  {
+    name: 'Mendjahit',
+    logo: logoMendjahit,
+    alt: 'Logo Mendjahit',
+  },
+  {
+    name: 'Seven Chicken',
+    logo: logoSevenChicken,
+    alt: 'Logo Seven Chicken',
+  },
+  {
+    name: 'Ayam Lengkuas Mama',
+    logo: logoAyamMama,
+    alt: 'Logo Ayam Lengkuas Mama',
+  },
+];
 
 function FadeIn({ children, delay = 0, className = '' }) {
   return (
@@ -782,81 +840,79 @@ export default function App() {
         </div>
       </section>
 
-      <section id="sponsorship" className="relative py-24 md:py-28">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute left-0 top-12 h-64 w-64 rounded-full bg-[#2dd4bf]/25 blur-[120px]"></div>
-          <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-[#fbbf24]/20 blur-[120px]"></div>
+      <section id="sponsorship" className="relative overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/4 top-10 h-72 w-72 rounded-full bg-[#2dd4bf]/20 blur-[130px]"></div>
+          <div className="absolute right-1/4 bottom-10 h-80 w-80 rounded-full bg-[#fbbf24]/15 blur-[140px]"></div>
+          <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0f766e]/10 blur-[150px]"></div>
         </div>
+
         <div className="mx-auto max-w-6xl px-6">
-          <FadeIn className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
-                Sponsorship
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
-                Bersama Mewujudkan Indonesia Emas 2045
-              </h2>
-            </div>
+          <FadeIn className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
+              Sponsor Resmi
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              Terima Kasih Kepada
+              <span className="block bg-gradient-to-r from-[#008585] to-[#bba100] bg-clip-text text-transparent">
+                Sponsor Kami
+              </span>
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-[color:var(--color-muted)] md:text-lg">
+              Kami mengucapkan apresiasi dan terima kasih yang sebesar-besarnya kepada seluruh sponsor yang telah berpartisipasi serta mendukung kesuksesan <span className="font-semibold text-[color:var(--color-primary)]">Brawijaya Essay Competition 2026</span>. Sinergi ini merupakan wujud nyata kontribusi dalam mendorong riset, inovasi, dan potensi terbaik generasi muda demi menyongsong <span className="font-semibold text-[color:var(--color-ink)]">Indonesia Emas 2045</span>.
+            </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="mt-12 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
-            <div className="glass-card relative overflow-hidden rounded-3xl p-8">
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-[#2dd4bf]/40 to-[#fbbf24]/30 blur-2xl"></div>
-              <div className="relative z-10 space-y-8">
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f766e] to-[#2dd4bf] text-white shadow-lg">
-                    <Handshake size={26} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
-                      Kontak Sponsorship
-                    </p>
-                    <h3 className="text-2xl font-semibold">Tim Sponsorship BEC 2026</h3>
-                  </div>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {sponsorshipContacts.map((contact) => (
-                    <div
-                      key={`sponsorship-${contact.name}`}
-                      className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 shadow-sm"
-                    >
-                      <p className="text-sm font-semibold text-[color:var(--color-ink)]">
-                        {contact.name}
-                      </p>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[2px] text-[color:var(--color-secondary)]">
-                        WhatsApp
-                      </p>
-                      <p className="text-sm text-[color:var(--color-muted)]">
-                        {contact.phone}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 sm:gap-6">
+            {sponsors.map((sponsor, index) => (
+              <FadeIn key={sponsor.name} delay={index * 0.05}>
+                <div className="glass-card group relative flex h-full flex-col items-center justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-5 text-center shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[color:var(--color-secondary)]/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(15,118,110,0.14)] sm:p-6">
+                  {/* Subtle hover gradient background */}
+                  <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-[color:var(--color-secondary)]/10 via-transparent to-[color:var(--color-accent)]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div className="glass-card relative overflow-hidden rounded-3xl p-8">
-              <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-gradient-to-br from-[#0f766e]/30 to-[#2dd4bf]/20 blur-2xl"></div>
-              <div className="relative z-10 flex h-full flex-col justify-between gap-6">
-                <div className="space-y-4">
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-[3px] text-[color:var(--color-secondary)]">
-                      Proposal
-                    </p>
-                    <h3 className="text-2xl font-semibold">Sponsorship Kit 2026</h3>
-                    <p className="text-sm text-[color:var(--color-muted)]">
-                      Detail paket kemitraan, benefit, dan peluang kolaborasi untuk BEC 2026.
+                  {/* Top glowing accent on hover */}
+                  <div className="absolute inset-x-6 top-0 h-[2px] bg-gradient-to-r from-transparent via-[color:var(--color-secondary)]/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  {/* Sponsor Logo Container */}
+                  <div className="relative flex h-24 w-full items-center justify-center p-2">
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.alt}
+                      loading="lazy"
+                      className="max-h-full max-w-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+
+                  {/* Sponsor Name with divider */}
+                  <div className="relative mt-3 w-full border-t border-slate-100/90 pt-3">
+                    <p className="line-clamp-2 text-xs font-semibold text-[color:var(--color-ink)] transition-colors duration-200 group-hover:text-[color:var(--color-primary)] sm:text-sm">
+                      {sponsor.name}
                     </p>
                   </div>
                 </div>
-                <a
-                  href={WEB_CONFIG.links.proposalSponsorship}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-primary)] px-8 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[color:var(--color-secondary)]"
-                >
-                  Lihat Proposal
-                </a>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.3} className="mx-auto mt-14 max-w-4xl">
+            <div className="glass-card relative overflow-hidden rounded-3xl border border-white/70 p-8 text-center shadow-lg sm:p-10">
+              <div className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-[#2dd4bf]/25 to-transparent blur-2xl" />
+              <div className="pointer-events-none absolute -right-12 -bottom-12 h-40 w-40 rounded-full bg-gradient-to-tl from-[#fbbf24]/20 to-transparent blur-2xl" />
+              <div className="relative z-10 flex flex-col items-center gap-4">
+                <h3 className="text-xl font-bold text-[color:var(--color-ink)] sm:text-2xl">
+                  Sinergi Bersama Menuju Indonesia Emas 2045
+                </h3>
+                <p className="max-w-2xl text-sm leading-relaxed text-[color:var(--color-muted)] sm:text-base">
+                  Dukungan dari para sponsor dan mitra menjadi pilar penting bagi terselenggaranya seluruh rangkaian kompetisi, mentoring, hingga expo dan awarding BEC 2026 dalam mengapresiasi talenta muda terbaik tanah air.
+                </p>
+                <div className="mt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-[color:var(--color-primary)] sm:gap-6 sm:text-sm">
+                  <span className="flex items-center gap-1.5">
+                    <BadgeCheck size={16} className="text-[color:var(--color-secondary)]" /> 10 Mitra & Sponsor Resmi
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <BadgeCheck size={16} className="text-[color:var(--color-secondary)]" /> Ratusan Partisipan Nasional
+                  </span>
+                </div>
               </div>
             </div>
           </FadeIn>
